@@ -17,7 +17,7 @@ public class Node {
                 return;
             }
             left = new Node(key);
-        } else if (this.key.compareTo(key)< 0) {
+        } else if (this.key.compareTo(key) < 0) {
             if (right != null) {
                 right.add(key);
                 return;
@@ -26,24 +26,34 @@ public class Node {
         }
     }
 
-    public String search(String key, String path) {
-        if (this.key.equals(key)) {
-            return path;
-        }
+    public Node search(String key) {
+        if (this.key.equals(key))
+            return this;
 
         if (this.key.compareTo(key) > 0) {
-            if (left != null) {
-                return left.search(key, path + "->left");
-            } else {
-                return "NOT_FOUND";
-            }
+            if (left != null)
+                return left.search(key);
+            return null;
         }
 
         if (right != null)
-            return right.search(key, path + "->right");
-        else
-            return "NOT_FOUND";
+            return right.search(key);
+        return null;
 
+    }
+
+    public String getMin() {
+        if (this.left != null) {
+            return this.left.getMin();
+        }
+        return this.key;
+    }
+
+    public String getMax() {
+        if (this.right != null) {
+            return this.right.getMax();
+        }
+        return this.key;
     }
 
     public Node(String key, Node left, Node right) {
@@ -54,7 +64,7 @@ public class Node {
 
     @Override
     public String toString() {
-        return key + (left != null ? "," + left.toString() : "") + (right != null ? "," + right.toString() : "");
+        return (left != null ? left.toString() + "," : "") + key + (right != null ? "," + right.toString() : "");
     }
 
     public Node getLeft() {

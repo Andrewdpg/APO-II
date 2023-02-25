@@ -23,8 +23,15 @@ public class Tree {
         root.add(data);
     }
 
-    public String search(String key){
-        return root.search(key, "root");
+    public Node search(String key){
+        return root.search(key);
+    }
+
+    public String getMin(){
+        return root.getMin();
+    }
+    public String getMax(){
+        return root.getMax();
     }
 
     @Override
