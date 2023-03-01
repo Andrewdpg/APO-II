@@ -13,6 +13,13 @@ public class Node {
         this.key = key;
     }
 
+    public Node getMin(){
+        if(left != null){
+            return left.getMin();
+        }
+        return this;
+    }
+
     public String getKey() {
         return key;
     }

@@ -123,7 +123,7 @@ public class BST {
         } else if (current.getLeft() == null && current.getRight() != null) {
             return current.getRight();
         } else if (current.getRight() != null && current.getLeft() != null) {
-            current.setKey(getMax(current).getKey());
+            current.setKey(current.getRight().getMin().getKey());
             delete(current.getRight(), current, current.getKey());
             return current;
         } else {

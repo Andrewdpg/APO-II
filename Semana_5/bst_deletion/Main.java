@@ -20,7 +20,7 @@ public class Main {
         System.out.println("------");
         tree.inOrder();
 
-        tree.delete("Juan");
+        tree.delete("Julian");
         System.out.println("------");
         tree.inOrder();
 
