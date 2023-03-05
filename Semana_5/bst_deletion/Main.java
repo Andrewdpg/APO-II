@@ -4,12 +4,12 @@ public class Main {
 
     public static void main(String[] args) {
         BST tree = new BST();
-        Node a = new Node("David");
-        Node b = new Node("Julian");
-        Node c = new Node("Pablo");
-        Node d = new Node("Juan");
-        Node e = new Node("Isabela");
-        Node f = new Node("Daniela");
+        Node a = new Node(1);
+        Node b = new Node(2);
+        Node c = new Node(3);
+        Node d = new Node(4);
+        Node e = new Node(5);
+        Node f = new Node(6);
         tree.add(a);
         tree.add(b);
         tree.add(c);
@@ -20,10 +20,9 @@ public class Main {
         System.out.println("------");
         tree.inOrder();
 
-        tree.delete("Julian");
         System.out.println("------");
         tree.inOrder();
-
+        System.out.println("Is it a BST? -> "+tree.checkBST());
     }
 
 }

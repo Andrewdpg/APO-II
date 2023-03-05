@@ -2,29 +2,24 @@ package Semana_5.bst_deletion;
 
 public class Node {
 
-    private String key;
+    private int key;
     //Datos
 
     //Enlaces
     private Node right;
     private Node left;
 
-    public Node(String key) {
+    public Node(int key) {
         this.key = key;
     }
 
-    public Node getMin(){
-        if(left != null){
-            return left.getMin();
-        }
-        return this;
-    }
+    
 
-    public String getKey() {
+    public int getKey() {
         return key;
     }
 
-    public void setKey(String key) {
+    public void setKey(int key) {
         this.key = key;
     }
 

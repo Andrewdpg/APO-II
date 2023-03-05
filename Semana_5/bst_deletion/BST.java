@@ -13,14 +13,14 @@ public class BST {
     }
 
     private void add(Node current, Node node) {
-        if (node.getKey().compareTo(current.getKey()) < 0) {
+        if (node.getKey() - current.getKey() < 0) {
             // Meter a la izquierda
             if (current.getLeft() == null) {
                 current.setLeft(node);
             } else {
                 add(current.getLeft(), node);
             }
-        } else if (node.getKey().compareTo(current.getKey()) > 0) {
+        } else if (node.getKey()-current.getKey() > 0) {
             // Meter a la derecha
             if (current.getRight() == null) {
                 current.setRight(node);
@@ -68,36 +68,36 @@ public class BST {
         inOrder(current.getRight());
     }
 
-    public Node search(String goal) {
+    public Node search(int goal) {
         return search(root, goal);
     }
 
-    private Node search(Node current, String goal) {
+    private Node search(Node current, int goal) {
         if (current == null) {
             System.out.println("Not found");
             return null;
         }
-        if (current.getKey().equals(goal)) {
+        if (current.getKey() == goal) {
             return current;
         }
 
-        if (goal.compareTo(current.getKey()) < 0) {
+        if (goal - current.getKey() < 0) {
             return search(current.getLeft(), goal);
         } else {
             return search(current.getRight(), goal);
         }
     }
 
-    public void delete(String goal) {
+    public void delete(int goal) {
         delete(root, null, goal);
     }
 
-    private void delete(Node current, Node parent, String goal) {
+    private void delete(Node current, Node parent, int goal) {
         if (current == null) {
             return;
         }
 
-        if (current.getKey().equals(goal)) {
+        if (current.getKey() ==goal) {
             if (parent == null) {
                 root = deleteNode(current);
             } else {
@@ -110,7 +110,7 @@ public class BST {
             return;
         }
 
-        if (goal.compareTo(current.getKey()) < 0) {
+        if (goal-current.getKey() < 0) {
             delete(current.getLeft(), current, goal);
         } else {
             delete(current.getRight(), current, goal);
@@ -123,11 +123,35 @@ public class BST {
         } else if (current.getLeft() == null && current.getRight() != null) {
             return current.getRight();
         } else if (current.getRight() != null && current.getLeft() != null) {
-            current.setKey(current.getRight().getMin().getKey());
+            current.setKey(getMin(current.getRight()).getKey());
             delete(current.getRight(), current, current.getKey());
             return current;
         } else {
             return null;
         }
+    }
+
+    public boolean checkBST(){
+        return checkBST(root);
+    }
+
+    private boolean checkBST(Node root) {
+        if(root.getLeft() != null){
+            if(root.getKey() < root.getLeft().getKey()){
+                return false;
+            }
+            if(!checkBST(root.getLeft())){
+                return false;
+            }
+        }
+        if(root.getRight() != null){
+            if(root.getKey() > root.getRight().getKey()){
+                return false;
+            }
+            if(!checkBST(root.getRight())){
+                return false;
+            }
+        }
+        return true;
     }
 }
