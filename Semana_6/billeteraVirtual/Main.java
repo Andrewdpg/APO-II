@@ -11,10 +11,11 @@ public class Main {
 
     public static void main(String[] args) {
         Wallet wallet = new Wallet(00001);
+        Scanner scn =new Scanner(System.in);
         try {
-            wallet.put(new Scanner(System.in).nextDouble());
+            wallet.put(scn.nextDouble());
             System.out.println("Fondos actuales: " + wallet.getFunds());
-            wallet.withdraw(new Scanner(System.in).nextDouble());
+            wallet.withdraw(scn.nextDouble());
         } catch (NegativeAmmountException ex) {
             ex.printStackTrace();
         } catch (OverTopException ex) {
@@ -22,5 +23,6 @@ public class Main {
         }catch(NotEnoughMoneyException ex){
             ex.printStackTrace();
         }
+        scn.close();
     }
 }
