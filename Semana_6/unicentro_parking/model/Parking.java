@@ -42,11 +42,13 @@ public class Parking {
 
         if (LETTERS.substring(0, LETTERS.indexOf("N")).contains("" + vehicle.getPlate().charAt(0))) {
             if (calendar.get(Calendar.HOUR) < 7 || calendar.get(Calendar.HOUR) >= 14) {
-                throw new EntranceNotAllowedException("Horario de entrada no permitido");
+                throw new EntranceNotAllowedException("Horario de entrada no permitido. La placa comienza por "
+                        + vehicle.getPlate().charAt(0));
             }
         } else {
             if (calendar.get(Calendar.HOUR) < 14 || calendar.get(Calendar.HOUR) >= 22) {
-                throw new EntranceNotAllowedException("Horario de entrada no permitido");
+                throw new EntranceNotAllowedException(
+                        "Horario de entrada no permitido. La placa comienza por " + vehicle.getPlate().charAt(0));
             }
         }
 
@@ -54,33 +56,35 @@ public class Parking {
             int num = Integer.parseInt(vehicle.getPlate().substring(3, 5));
             if (num >= 0 && num <= 49) {
                 if (calendar.get(Calendar.HOUR) < 7 || calendar.get(Calendar.HOUR) >= 14) {
-                    throw new EntranceNotAllowedException("Horario de entrada no permitido");
+                    throw new EntranceNotAllowedException(
+                            "Horario de entrada no permitido. La placa contiene el numero " + num);
                 }
             } else {
                 if (calendar.get(Calendar.HOUR) < 14 || calendar.get(Calendar.HOUR) >= 22) {
-                    throw new EntranceNotAllowedException("Horario de entrada no permitido");
+                    throw new EntranceNotAllowedException(
+                            "Horario de entrada no permitido. La placa contiene el numero " + num);
                 }
             }
         }
 
-        if(vehicle.getOwnerID().endsWith("0") ||vehicle.getOwnerID().endsWith("1")){
-            if(calendar.get(Calendar.DAY_OF_WEEK) == 2){
+        if (vehicle.getOwnerID().endsWith("0") || vehicle.getOwnerID().endsWith("1")) {
+            if (calendar.get(Calendar.DAY_OF_WEEK) == 2) {
                 throw new EntranceNotAllowedException("Dia no permitido para entrada");
             }
-        }else if(vehicle.getOwnerID().endsWith("2") ||vehicle.getOwnerID().endsWith("3")){
-            if(calendar.get(Calendar.DAY_OF_WEEK) == 3){
-                throw new EntranceNotAllowedException("Dia no permitido para entrada");
-            }   
-        }else if(vehicle.getOwnerID().endsWith("4") ||vehicle.getOwnerID().endsWith("5")){
-            if(calendar.get(Calendar.DAY_OF_WEEK) == 4){
+        } else if (vehicle.getOwnerID().endsWith("2") || vehicle.getOwnerID().endsWith("3")) {
+            if (calendar.get(Calendar.DAY_OF_WEEK) == 3) {
                 throw new EntranceNotAllowedException("Dia no permitido para entrada");
             }
-        }else if(vehicle.getOwnerID().endsWith("6") ||vehicle.getOwnerID().endsWith("7")){
-            if(calendar.get(Calendar.DAY_OF_WEEK) == 5){
+        } else if (vehicle.getOwnerID().endsWith("4") || vehicle.getOwnerID().endsWith("5")) {
+            if (calendar.get(Calendar.DAY_OF_WEEK) == 4) {
                 throw new EntranceNotAllowedException("Dia no permitido para entrada");
             }
-        }else if(vehicle.getOwnerID().endsWith("8") ||vehicle.getOwnerID().endsWith("9")){
-            if(calendar.get(Calendar.DAY_OF_WEEK) == 6){
+        } else if (vehicle.getOwnerID().endsWith("6") || vehicle.getOwnerID().endsWith("7")) {
+            if (calendar.get(Calendar.DAY_OF_WEEK) == 5) {
+                throw new EntranceNotAllowedException("Dia no permitido para entrada");
+            }
+        } else if (vehicle.getOwnerID().endsWith("8") || vehicle.getOwnerID().endsWith("9")) {
+            if (calendar.get(Calendar.DAY_OF_WEEK) == 6) {
                 throw new EntranceNotAllowedException("Dia no permitido para entrada");
             }
         }
