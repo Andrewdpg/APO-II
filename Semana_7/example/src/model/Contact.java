@@ -10,13 +10,13 @@ public class Contact {
     private String email;
 
     public Contact(String name, String phone, String email) throws InvalidNumberException {
-        //Regular expresions
+        // Regular expresions
         try {
             this.name = name;
             this.phone = phone;
             this.email = email;
             Double.valueOf(phone);
-        }catch (NumberFormatException ex){
+        } catch (NumberFormatException ex) {
             throw new InvalidNumberException();
         }
 
@@ -44,5 +44,14 @@ public class Contact {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public boolean equals(Object contact) {
+        if (contact instanceof Contact) {
+            return ((Contact) contact).getEmail().equals(this.name)
+                    || ((Contact) contact).getPhone().equals(this.phone);
+        }
+        return false;
     }
 }
