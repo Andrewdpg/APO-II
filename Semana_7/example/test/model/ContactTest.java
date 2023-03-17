@@ -1,6 +1,9 @@
 package model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +25,7 @@ public class ContactTest {
     public void contactNumberIsNumericTest() {
         boolean result = false;
         try {
-            Contact contact = new Contact("Alejandra", "3224210570", "alejamantillac@gmail.com");
+            new Contact("Alejandra", "3224210570", "alejamantillac@gmail.com");
             result = true;
         } catch (InvalidNumberException e) {
             e.printStackTrace();
