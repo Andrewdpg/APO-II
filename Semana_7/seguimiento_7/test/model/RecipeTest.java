@@ -35,9 +35,13 @@ public class RecipeTest {
     public void addMultipleIngredientsTest() {
         setupStage2();
 
-        recipe.addIngredient("Pimienta", 6);
+        Ingredient pimienta = new Ingredient();
+        pimienta.setName("Pimienta");
+        pimienta.setWeight(6);
 
-        assertEquals(new Ingredient("Pimienta", 6), recipe.getLast());
+        recipe.addIngredient("Pimienta",6);
+
+        assertEquals(pimienta, recipe.getLast());
     }
 
     @Test

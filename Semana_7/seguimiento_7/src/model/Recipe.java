@@ -11,7 +11,9 @@ public class Recipe {
     }
 
     public void addIngredient(String name, int weight) {
-        Ingredient ingredient = new Ingredient(name, weight);
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName(name);
+        ingredient.setWeight(weight);
         if (ingredients.contains(ingredient)) {
             int index = ingredients.indexOf(ingredient);
             ingredient.addWeight(ingredients.get(index).getWeight());
@@ -21,19 +23,27 @@ public class Recipe {
         }
     }
 
-    public void removeIngredient(String name){
-        Ingredient ingredient =new Ingredient(name, 0);
-        if(ingredients.contains(ingredient)){
+    public void removeIngredient(String name) {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName(name);
+        ingredient.setWeight(0);
+        if (ingredients.contains(ingredient)) {
             ingredients.removeFirstOccurrence(ingredient);
         }
     }
 
     public boolean contains(String name) {
-        return ingredients.contains(new Ingredient(name, 0));
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName(name);
+        ingredient.setWeight(0);
+        return ingredients.contains(ingredient);
     }
 
     public int weightOf(String name) {
-        return ingredients.get(ingredients.indexOf(new Ingredient(name, 0))).getWeight();
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName(name);
+        ingredient.setWeight(0);
+        return ingredients.get(ingredients.indexOf(ingredient)).getWeight();
     }
 
     public Ingredient getLast() {

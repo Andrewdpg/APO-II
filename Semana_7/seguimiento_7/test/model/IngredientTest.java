@@ -12,7 +12,9 @@ public class IngredientTest {
     Ingredient ingredient;
 
     public void setupStage1() {
-        ingredient = new Ingredient("Tomate", 245);
+        ingredient = new Ingredient();
+        ingredient.setName("Tomate");
+        ingredient.setWeight(245);
     }
 
     @Test
