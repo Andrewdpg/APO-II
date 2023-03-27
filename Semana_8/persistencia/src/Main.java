@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import model.Student;
@@ -5,44 +7,35 @@ import model.StudentList;
 
 public class Main {
 
-    private static Scanner scn = new Scanner(System.in);
-    private static StudentList list;
+    static StudentList studentList = new StudentList();
 
-    public static void main(String[] args) {
-        list = new StudentList();
-        try {
-            list.read();
-        } catch (Exception e) {
-            System.out.println("Error al cargar los datos");
-        }
-        int option = -1;
-        while (option != 0) {
-            try {
-                System.out.print(
-                        "1. Ingresar estudiante.\n2. Tabla de estudiantes \n0. Salir\nOpcion:");
-                option = Integer.parseInt(scn.nextLine());
-                switch (option) {
-                    case 1:
-                        System.out.println("Escriba el estudiante con el formato: " + Student.savingTableStructure());
-                        String value = scn.nextLine();
-                        Student student = new Student();
-                        for (int i = 0; i < Student.savingTableStructure().split(StudentList.separator).length; i++) {
-                            student.setField(Student.savingTableStructure().split(StudentList.separator)[i],
-                                    value.split(StudentList.separator)[i]);
-                        }
-                        list.getStudents().add(student);
-                        list.save();
-                        break;
-                    case 2:
-                        System.out.println("Lista: \n\n" + list.toTable());
-                        break;
-                    default:
-                        System.out.println("Opción no reconocida");
-                        break;
-                }
-            } catch (Exception e) {
-                System.out.println("Parece que ha habido un error, intena nuevamente");
-                e.printStackTrace();
+    public static void main(String[] args) throws IOException {
+
+        // Cargar la informacion
+        studentList.load();
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("1. Añadir\n2.Mostrar\n3.Salir\n");
+            int option = Integer.parseInt(scanner.nextLine());
+            switch (option) {
+                case 1:
+                    // Nombre++Code++Edad
+                    System.out.println("Escriba la entrada con el formato Nombre++Code++Edad");
+                    String input = scanner.nextLine();
+                    String[] data = input.split("\\+\\+");
+                    System.out.println(Arrays.toString(data));
+                    studentList.getStudents().add(
+                            new Student(data[0], data[1], Integer.parseInt(data[2])));
+                    studentList.save();
+                    break;
+                case 2:
+                    studentList.show();
+                    break;
+                case 3:
+                    System.exit(0);
+                    break;
             }
         }
 
