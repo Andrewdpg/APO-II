@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Colombia",
+        "medals": [
+            4,
+            5,
+            0
+        ]
+    },
+    {
+        "name": "USA",
+        "medals": [
+            5,
+            1,
+            1
+        ]
+    },
+    {
+        "name": "Argentina",
+        "medals": [
+            3,
+            5,
+            0
+        ]
+    }
+]
