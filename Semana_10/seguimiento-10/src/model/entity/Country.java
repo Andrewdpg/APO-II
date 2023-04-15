@@ -68,7 +68,10 @@ public class Country implements Comparable<Country> {
         if ((result = o.getMedalCount(Medal.SILVER) - this.getMedalCount(Medal.SILVER)) != 0) {
             return result;
         }
-        return o.getMedalCount(Medal.SILVER) - this.getMedalCount(Medal.SILVER);
+        if ((result = o.getMedalCount(Medal.BRONZE) - this.getMedalCount(Medal.BRONZE)) != 0) {
+            return result;
+        }
+        return this.getName().compareTo(o.getName());
     }
 
     public String conventionalMedalsString() {
